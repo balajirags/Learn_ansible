@@ -1,0 +1,27 @@
+---
+- hosts: all
+  roles:
+    - provision-ansible-user
+  tags:
+    - base-provision
+
+- hosts: web
+  roles:
+    - provision-java
+    - provision-nginx
+  tags:
+    - provision
+
+- hosts: web
+  roles:
+    - deploy-ui
+    - deploy-server
+  tags:
+    - deploy
+
+- hosts: db
+  roles:
+    - provision-postgres
+    - provision-db
+  tags:
+    - provision
